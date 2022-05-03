@@ -1,0 +1,84 @@
+/* ==UserStyle==
+@name           OpenVK Tweaks
+@namespace      github.com/openstyles/stylus
+@version        0.0.1
+@description    Tweaks for OpenVK
+@author         thejenja_
+@preprocessor	stylus
+
+@var select label1 "Помеченные ❌ - тестируются или работают некорректно" ["_"]
+@var checkbox --cleanThemeCheckbox "- Чекбокс 'Применить стиль только для этого устройства' " 0
+@var checkbox --cleanVotesBox "- Блок с неиспользованными голосами" 0
+@var checkbox --followersProfile "- Кнопка подписчиков в профиле" 0
+@var checkbox --debugInfo "- Нижний текст с данными об инстансе" 0
+@var checkbox --serverIMG "- Картинка системы сервера" 0
+@var checkbox --Gifts "- Блок подарков в профиле ❌" 0
+@var checkbox --hideWrap "- Скрытие верхней панели (wrap) ❌" 0
+@var checkbox --WideScrolledPage "- Широкая лента при скролле ❌" 0
+@var checkbox --fixedSearchbar "- Исправленная полоска поиска ❌" 0
+==/UserStyle== */
+
+@-moz-document url-prefix("https://openvk.su/"), url-prefix("https://openvk.uk/") {
+	if --cleanThemeCheckbox
+	{
+		#auth > div > div.container_gray > form:nth-child(2) > table > tbody > tr:nth-child(6)
+		{
+			display: none !important;
+		}
+	}
+    if --cleanVotesBox
+    {
+        #votesBalance
+        {
+            display: none !important;
+        }
+    }
+    if --followersProfile
+    {
+        #profile_links > a
+        {
+            display: none !important;
+        }
+    }
+    if --debugInfo
+    {
+        body > div.page_footer > p:nth-child(2)
+        {
+            display: none !important;
+        }
+    }
+    if --serverIMG
+    {
+        body > div.page_footer > p:nth-child(3) > img
+        {
+            display: none !important;
+        }
+    }
+    if --Gifts
+    {
+        #auth > div > div.right_big_block > div:nth-child(3){
+            display: none !important;
+        }
+    }
+    if --hideWrap
+    {
+        #wrapH{
+            display: none !important;
+        }
+    }
+    if --WideScrolledPage
+    {
+        body.scrolled #auth > div > div.left_small_block{
+            display: none !important;
+        }
+        body.scrolled #auth > div > div.right_big_block{
+            width: 613px !important;
+        }
+    }
+    if --fixedSearchbar
+    {
+        input[type~="search"][name~="query"]{
+            height: 24px !important;
+        }
+    }
+}
