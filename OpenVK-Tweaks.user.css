@@ -16,6 +16,7 @@
 @var checkbox --hideWrap "- Скрытие верхней панели (wrap) ❌" 0
 @var checkbox --WideScrolledPage "- Широкая лента при скролле ❌" 0
 @var checkbox --fixedSearchbar "- Исправленная полоска поиска ❌" 0
+@var checkbox --hideSurname "- Скрытие фамилий в блоке друзья" 0
 ==/UserStyle== */
 
 @-moz-document url-prefix("https://openvk.su/"), url-prefix("https://openvk.uk/") {
@@ -79,6 +80,12 @@
     {
         input[type~="search"][name~="query"]{
             height: 24px !important;
+        }
+    }
+if --hideSurname
+    {
+        .content_list .cl_element .cl_name .cl_lname {
+            display: none;
         }
     }
 }
