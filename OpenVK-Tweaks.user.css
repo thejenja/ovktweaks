@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           OpenVK Tweaks
 @namespace      github.com/openstyles/stylus
-@version        0.0.2
+@version        0.0.3
 @description    Tweaks for OpenVK
 @author         thejenja_
 @preprocessor	stylus
@@ -19,6 +19,7 @@
 @var checkbox --hideSurname "- Скрытие фамилий в блоке друзья" 0
 @var checkbox --bigYellowheader "- Большая полоска на странице" 0
 @var checkbox --hideCookieMess "- Скрытие сообщения о cookie" 0
+@var checkbox --wideSocialMode "- Режим на всю ширину ❌" 0
 ==/UserStyle== */
 
 @-moz-document url-prefix("https://openvk.su/"), url-prefix("https://openvk.uk/") {
@@ -100,6 +101,29 @@
     {
         .cookies-popup {
             display: none !important;
+        }
+    }
+    if --wideSocialMode {
+        .layout {
+            width: 100%;
+        }
+        .page_header {
+            width: 100%;
+        }
+        body > div.layout > div.page_body{
+            width: 88% !important;
+        }
+        .page_content{
+            width: 100%;
+        }
+        .left_small_block {
+            width: 20%;
+        }
+        .right_big_block {
+            width: 79%;
+        }
+        .crp-list, .crp-entry, #auth .container_gray {
+            width: 100%;
         }
     }
 }
