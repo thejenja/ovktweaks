@@ -1,25 +1,26 @@
 /* ==UserStyle==
 @name           OpenVK Tweaks
 @namespace      github.com/openstyles/stylus
-@version        0.0.3
+@version        0.0.4
 @description    Tweaks for OpenVK
 @author         thejenja_
 @preprocessor	stylus
 
 @var select label1 "Помеченные ❌ - тестируются или работают некорректно" ["_"]
-@var checkbox --cleanThemeCheckbox "- Чекбокс 'Применить стиль только для этого устройства' " 0
-@var checkbox --cleanVotesBox "- Блок с неиспользованными голосами" 0
-@var checkbox --followersProfile "- Кнопка подписчиков в профиле" 0
-@var checkbox --debugInfo "- Нижний текст с данными об инстансе" 0
-@var checkbox --serverIMG "- Картинка системы сервера" 0
-@var checkbox --Gifts "- Блок подарков в профиле ❌" 0
-@var checkbox --hideWrap "- Скрытие верхней панели (wrap) ❌" 0
-@var checkbox --WideScrolledPage "- Широкая лента при скролле ❌" 0
-@var checkbox --fixedSearchbar "- Исправленная полоска поиска ❌" 0
-@var checkbox --hideSurname "- Скрытие фамилий в блоке друзья" 0
-@var checkbox --bigYellowheader "- Большая полоска на странице" 0
-@var checkbox --hideCookieMess "- Скрытие сообщения о cookie" 0
-@var checkbox --wideSocialMode "- Режим на всю ширину ❌" 0
+@var checkbox --cleanThemeCheckbox "Чекбокс 'Применить стиль только для этого устройства'" 0
+@var checkbox --cleanVotesBox "Блок с неиспользованными голосами" 0
+@var checkbox --followersProfile "Кнопка подписчиков в профиле" 0
+@var checkbox --debugInfo "Нижний текст с данными об инстансе" 0
+@var checkbox --serverIMG "Картинка системы сервера" 0
+@var checkbox --Gifts "Блок подарков в профиле ❌" 0
+@var checkbox --hideWrap "Скрытие верхней панели (wrap) ❌" 0
+@var checkbox --WideScrolledPage "Широкая лента при скролле ❌" 0
+@var checkbox --fixedSearchbar "Исправленная полоска поиска ❌" 0
+@var checkbox --hideSurname "Скрытие фамилий в блоке друзья" 0
+@var checkbox --bigYellowheader "Большая полоска на странице" 0
+@var checkbox --hideCookieMess "Скрытие сообщения о cookie" 0
+@var checkbox --wideSocialMode "Режим на всю ширину ❌" 0
+@var checkbox --hideFeedPageSelect "Скрыть раздел 'Кол-во записей на странице'" 0
 ==/UserStyle== */
 
 @-moz-document url-prefix("https://openvk.su/"), url-prefix("https://openvk.uk/") {
@@ -124,6 +125,11 @@
         }
         .crp-list, .crp-entry, #auth .container_gray {
             width: 100%;
+        }
+    }
+    if --hideFeedPageSelect{
+        .postFeedBottom .postFeedPageSelect {
+            display: none;
         }
     }
 }
