@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           OpenVK Tweaks
 @namespace      github.com/openstyles/stylus
-@version        0.0.4
+@version        0.0.5
 @description    Tweaks for OpenVK
 @author         thejenja_
 @preprocessor	stylus
@@ -21,6 +21,8 @@
 @var checkbox --hideCookieMess "Скрытие сообщения о cookie" 0
 @var checkbox --wideSocialMode "Режим на всю ширину ❌" 0
 @var checkbox --hideFeedPageSelect "Скрыть раздел 'Кол-во записей на странице'" 0
+@var checkbox --animations "Анимации" 0
+@var checkbox --hideSidebar "Скрыть летающую левую панель" 0
 ==/UserStyle== */
 
 @-moz-document url-prefix("https://openvk.su/"), url-prefix("https://openvk.uk/") {
@@ -34,9 +36,7 @@
     if --cleanVotesBox
     {
         #votesBalance
-        {
-            display: none !important;
-        }
+        {display: none !important;}
     }
     if --followersProfile
     {
@@ -132,4 +132,17 @@
             display: none;
         }
     }
+    if --animations{
+        .page_body, .ovk-diag-cont { opacity: 0;
+            transition: 1s;
+            animation: show 1s 1;
+            animation-fill-mode: forwards;
+            animation-delay: .3s; }
+        @keyframes show { 0% { opacity: 0; }
+            100% { opacity: 1; } }
+        }
+        .link, .tab, .profile_link, #profile_link, a { transition: .5s; }
+    if --hideSidebar{
+            .floating_sidebar{display: none !important;}
+        }
 }
