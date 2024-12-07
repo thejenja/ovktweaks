@@ -1,9 +1,9 @@
 /* ==UserStyle==
 @name           OpenVK Tweaks
 @namespace      github.com/openstyles/stylus
-@version        0.0.5
+@version        0.1.0
 @description    Tweaks for OpenVK
-@author         thejenja_
+@author         thejenja
 @preprocessor	stylus
 
 @var select label1 "Помеченные ❌ - тестируются или работают некорректно" ["_"]
@@ -11,10 +11,10 @@
 @var checkbox --cleanVotesBox "Блок с неиспользованными голосами" 0
 @var checkbox --followersProfile "Кнопка подписчиков в профиле" 0
 @var checkbox --debugInfo "Нижний текст с данными об инстансе" 0
+@var checkbox --changeLang "Выбор языка внизу страницы" 0
 @var checkbox --serverIMG "Картинка системы сервера" 0
 @var checkbox --Gifts "Блок подарков в профиле ❌" 0
 @var checkbox --hideWrap "Скрытие верхней панели (wrap) ❌" 0
-@var checkbox --WideScrolledPage "Широкая лента при скролле ❌" 0
 @var checkbox --fixedSearchbar "Исправленная полоска поиска ❌" 0
 @var checkbox --hideSurname "Скрытие фамилий в блоке друзья" 0
 @var checkbox --bigYellowheader "Большая полоска на странице" 0
@@ -23,9 +23,13 @@
 @var checkbox --hideFeedPageSelect "Скрыть раздел 'Кол-во записей на странице'" 0
 @var checkbox --animations "Анимации" 0
 @var checkbox --hideSidebar "Скрыть летающую левую панель" 0
+@var checkbox --hideHoverContent "Скрыть всплывающие подсказки элементов HTML в заметках" 0
+@var checkbox --hideContentTitle "Скрыть названии разделов в профиле" 0
+@var checkbox --backdropCover "Фон страницы на весь экран (для нестандартных форматов)" 0
+@var checkbox --miniMusicPlayer "Мини-плеер для AJAX-музыки" 0
 ==/UserStyle== */
 
-@-moz-document url-prefix("https://openvk.su/"), url-prefix("https://openvk.uk/") {
+@-moz-document url-prefix("https://ovk.to/") {
 	if --cleanThemeCheckbox
 	{
 		#auth > div > div.container_gray > form:nth-child(2) > table > tbody > tr:nth-child(6)
@@ -47,6 +51,13 @@
     }
     if --debugInfo
     {
+        body > div.page_footer > p:nth-child(3)
+        {
+            display: none !important;
+        }
+    }
+    if --changeLang
+    {
         body > div.page_footer > p:nth-child(2)
         {
             display: none !important;
@@ -54,14 +65,14 @@
     }
     if --serverIMG
     {
-        body > div.page_footer > p:nth-child(3) > img
+        .page_footer > p > img[src="/icons/poweredby.png"]
         {
             display: none !important;
         }
     }
     if --Gifts
     {
-        #auth > div > div.right_big_block > div:nth-child(3){
+        #auth > div > div.right_big_block > div:has(img[src*="gift"]){
             display: none !important;
         }
     }
@@ -69,15 +80,6 @@
     {
         #wrapH{
             display: none !important;
-        }
-    }
-    if --WideScrolledPage
-    {
-        body.scrolled #auth > div > div.left_small_block{
-            display: none !important;
-        }
-        body.scrolled #auth > div > div.right_big_block{
-            width: 613px !important;
         }
     }
     if --fixedSearchbar
@@ -145,4 +147,46 @@
     if --hideSidebar{
             .floating_sidebar{display: none !important;}
         }
+    if --hideHoverContent{
+        .monaco-editor-hover .hover-contents{display: none}
+    }
+    if --hideContentTitle{
+        .content_title_expanded, .content_subtitle{display: none}
+    }
+    if --backdropCover{
+        #backdrop{background-size: cover}
+    }
+    if --miniMusicPlayer{
+        .page_body{
+            anchor-name: --navigation
+        }
+
+        .scrolled #ajax_audio_player{
+            position: fixed;
+            top: 10px !important
+        }
+        #ajax_audio_player {
+            position-anchor: --navigation;
+            top: calc(anchor(top) + 10px) !important;
+            left: calc(anchor(right) + 10px) !important;
+            width: 200px;
+            height: max-content;
+            #aj_player_track_length, #aj_player_volume, #aj_player_buttons{
+                display: none
+            }
+            #aj_player_track_title{
+                display: flex;
+                flex-direction: column;
+                font-size: 0;
+                width: 100%
+            }
+            b, span {
+                font-size: 12px;
+                text-overflow: ellipsis
+            }
+            #aj_player_track_name {
+                flex-direction: column
+            }
+        }
+    }
 }
